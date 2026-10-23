@@ -1,0 +1,44 @@
+{
+  "finding_count": 0,
+  "findings": [],
+  "interpretation": "Passing finds no documented static conflict in these dated profiles; it does not prove live provider acceptance, output meaning, or future compatibility.",
+  "metrics": {
+    "enum_values": 2,
+    "largest_enum_string_budget": 14,
+    "object_nesting_depth": 1,
+    "object_properties": 3,
+    "optional_parameters": 0,
+    "string_budget": 36,
+    "union_parameters": 1
+  },
+  "profiles": {
+    "anthropic-json-2026-10-22": {
+      "accessed": "2026-10-22",
+      "mode": "output_config.format json_schema",
+      "provider": "Anthropic",
+      "source": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs"
+    },
+    "gemini-json-2026-10-22": {
+      "accessed": "2026-10-22",
+      "mode": "application/json response schema",
+      "provider": "Google Gemini",
+      "source": "https://ai.google.dev/gemini-api/docs/structured-output"
+    },
+    "openai-strict-2026-10-22": {
+      "accessed": "2026-10-22",
+      "mode": "strict JSON Schema output",
+      "provider": "OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs"
+    }
+  },
+  "schema_sha256": "94af8c874f8d8d26536a2990715a76383b692ed9bb35ac5bb3bffce19046e565",
+  "schema_version": 1,
+  "targets": [
+    "openai-strict-2026-10-22",
+    "anthropic-json-2026-10-22",
+    "gemini-json-2026-10-22"
+  ],
+  "tool": "schemaroute",
+  "tool_version": "0.1.0",
+  "verdict": "portable"
+}

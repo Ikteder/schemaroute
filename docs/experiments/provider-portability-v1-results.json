@@ -1,0 +1,219 @@
+{
+  "baseline": "JSON parse plus object-root check; every structurally valid schema is portable",
+  "baseline_accuracy": 0.06666666666666667,
+  "baseline_correct": 1,
+  "case_count": 15,
+  "cases": [
+    {
+      "actual_codes": [],
+      "actual_verdict": "portable",
+      "baseline_correct": true,
+      "baseline_verdict": "portable",
+      "expected_codes": [],
+      "expected_verdict": "portable",
+      "id": "portable_all_three",
+      "schemaroute_correct": true
+    },
+    {
+      "actual_codes": [
+        "OPENAI_ROOT_OBJECT_REQUIRED"
+      ],
+      "actual_verdict": "blocked",
+      "baseline_correct": false,
+      "baseline_verdict": "portable",
+      "expected_codes": [
+        "OPENAI_ROOT_OBJECT_REQUIRED"
+      ],
+      "expected_verdict": "blocked",
+      "id": "openai_root_array",
+      "schemaroute_correct": true
+    },
+    {
+      "actual_codes": [
+        "OPENAI_ALL_FIELDS_REQUIRED"
+      ],
+      "actual_verdict": "blocked",
+      "baseline_correct": false,
+      "baseline_verdict": "portable",
+      "expected_codes": [
+        "OPENAI_ALL_FIELDS_REQUIRED"
+      ],
+      "expected_verdict": "blocked",
+      "id": "openai_optional_field",
+      "schemaroute_correct": true
+    },
+    {
+      "actual_codes": [
+        "OPENAI_CLOSED_OBJECT_REQUIRED"
+      ],
+      "actual_verdict": "blocked",
+      "baseline_correct": false,
+      "baseline_verdict": "portable",
+      "expected_codes": [
+        "OPENAI_CLOSED_OBJECT_REQUIRED"
+      ],
+      "expected_verdict": "blocked",
+      "id": "openai_open_object",
+      "schemaroute_correct": true
+    },
+    {
+      "actual_codes": [
+        "OPENAI_UNSUPPORTED_KEYWORD"
+      ],
+      "actual_verdict": "blocked",
+      "baseline_correct": false,
+      "baseline_verdict": "portable",
+      "expected_codes": [
+        "OPENAI_UNSUPPORTED_KEYWORD"
+      ],
+      "expected_verdict": "blocked",
+      "id": "openai_all_of",
+      "schemaroute_correct": true
+    },
+    {
+      "actual_codes": [
+        "OPENAI_PROPERTY_LIMIT"
+      ],
+      "actual_verdict": "blocked",
+      "baseline_correct": false,
+      "baseline_verdict": "portable",
+      "expected_codes": [
+        "OPENAI_PROPERTY_LIMIT"
+      ],
+      "expected_verdict": "blocked",
+      "id": "openai_property_limit",
+      "schemaroute_correct": true
+    },
+    {
+      "actual_codes": [
+        "OPENAI_NESTING_LIMIT"
+      ],
+      "actual_verdict": "blocked",
+      "baseline_correct": false,
+      "baseline_verdict": "portable",
+      "expected_codes": [
+        "OPENAI_NESTING_LIMIT"
+      ],
+      "expected_verdict": "blocked",
+      "id": "openai_nesting_limit",
+      "schemaroute_correct": true
+    },
+    {
+      "actual_codes": [
+        "ANTHROPIC_UNSUPPORTED_CONSTRAINT"
+      ],
+      "actual_verdict": "blocked",
+      "baseline_correct": false,
+      "baseline_verdict": "portable",
+      "expected_codes": [
+        "ANTHROPIC_UNSUPPORTED_CONSTRAINT"
+      ],
+      "expected_verdict": "blocked",
+      "id": "anthropic_numeric_constraint",
+      "schemaroute_correct": true
+    },
+    {
+      "actual_codes": [
+        "ANTHROPIC_RECURSION_UNSUPPORTED"
+      ],
+      "actual_verdict": "blocked",
+      "baseline_correct": false,
+      "baseline_verdict": "portable",
+      "expected_codes": [
+        "ANTHROPIC_RECURSION_UNSUPPORTED"
+      ],
+      "expected_verdict": "blocked",
+      "id": "anthropic_recursive",
+      "schemaroute_correct": true
+    },
+    {
+      "actual_codes": [
+        "ANTHROPIC_OPTIONAL_PARAMETER_LIMIT"
+      ],
+      "actual_verdict": "blocked",
+      "baseline_correct": false,
+      "baseline_verdict": "portable",
+      "expected_codes": [
+        "ANTHROPIC_OPTIONAL_PARAMETER_LIMIT"
+      ],
+      "expected_verdict": "blocked",
+      "id": "anthropic_optional_limit",
+      "schemaroute_correct": true
+    },
+    {
+      "actual_codes": [
+        "ANTHROPIC_UNION_PARAMETER_LIMIT"
+      ],
+      "actual_verdict": "blocked",
+      "baseline_correct": false,
+      "baseline_verdict": "portable",
+      "expected_codes": [
+        "ANTHROPIC_UNION_PARAMETER_LIMIT"
+      ],
+      "expected_verdict": "blocked",
+      "id": "anthropic_union_limit",
+      "schemaroute_correct": true
+    },
+    {
+      "actual_codes": [
+        "ANTHROPIC_CITATIONS_CONFLICT"
+      ],
+      "actual_verdict": "blocked",
+      "baseline_correct": false,
+      "baseline_verdict": "portable",
+      "expected_codes": [
+        "ANTHROPIC_CITATIONS_CONFLICT"
+      ],
+      "expected_verdict": "blocked",
+      "id": "anthropic_citations_conflict",
+      "schemaroute_correct": true
+    },
+    {
+      "actual_codes": [
+        "GEMINI_CONSTRAINT_IGNORED"
+      ],
+      "actual_verdict": "requires_runtime_validation",
+      "baseline_correct": false,
+      "baseline_verdict": "portable",
+      "expected_codes": [
+        "GEMINI_CONSTRAINT_IGNORED"
+      ],
+      "expected_verdict": "requires_runtime_validation",
+      "id": "gemini_ignored_constraints",
+      "schemaroute_correct": true
+    },
+    {
+      "actual_codes": [
+        "GEMINI_KEYWORD_UNVERIFIED"
+      ],
+      "actual_verdict": "requires_runtime_validation",
+      "baseline_correct": false,
+      "baseline_verdict": "portable",
+      "expected_codes": [
+        "GEMINI_KEYWORD_UNVERIFIED"
+      ],
+      "expected_verdict": "requires_runtime_validation",
+      "id": "gemini_unverified_one_of",
+      "schemaroute_correct": true
+    },
+    {
+      "actual_codes": [
+        "ANTHROPIC_RECURSION_UNSUPPORTED"
+      ],
+      "actual_verdict": "blocked",
+      "baseline_correct": false,
+      "baseline_verdict": "portable",
+      "expected_codes": [
+        "ANTHROPIC_RECURSION_UNSUPPORTED"
+      ],
+      "expected_verdict": "blocked",
+      "id": "three_provider_recursive_route",
+      "schemaroute_correct": true
+    }
+  ],
+  "schema_version": 1,
+  "schemaroute_accuracy": 1.0,
+  "schemaroute_correct": 15,
+  "tool": "schemaroute",
+  "tool_version": "0.1.0"
+}

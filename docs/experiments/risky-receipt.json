@@ -1,0 +1,94 @@
+{
+  "finding_count": 7,
+  "findings": [
+    {
+      "code": "OPENAI_ALL_FIELDS_REQUIRED",
+      "message": "All object fields must be required; 1 are optional.",
+      "pointer": "#",
+      "profile": "openai-strict-2026-10-22",
+      "severity": "error"
+    },
+    {
+      "code": "OPENAI_CLOSED_OBJECT_REQUIRED",
+      "message": "Every object must set additionalProperties to false.",
+      "pointer": "#",
+      "profile": "openai-strict-2026-10-22",
+      "severity": "error"
+    },
+    {
+      "code": "ANTHROPIC_CLOSED_OBJECT_REQUIRED",
+      "message": "Every object must set additionalProperties to false.",
+      "pointer": "#",
+      "profile": "anthropic-json-2026-10-22",
+      "severity": "error"
+    },
+    {
+      "code": "ANTHROPIC_UNSUPPORTED_CONSTRAINT",
+      "message": "maximum is not enforced by the raw provider schema profile.",
+      "pointer": "#/properties/score/maximum",
+      "profile": "anthropic-json-2026-10-22",
+      "severity": "error"
+    },
+    {
+      "code": "ANTHROPIC_UNSUPPORTED_CONSTRAINT",
+      "message": "minimum is not enforced by the raw provider schema profile.",
+      "pointer": "#/properties/score/minimum",
+      "profile": "anthropic-json-2026-10-22",
+      "severity": "error"
+    },
+    {
+      "code": "ANTHROPIC_UNSUPPORTED_CONSTRAINT",
+      "message": "minLength is not enforced by the raw provider schema profile.",
+      "pointer": "#/properties/summary/minLength",
+      "profile": "anthropic-json-2026-10-22",
+      "severity": "error"
+    },
+    {
+      "code": "GEMINI_CONSTRAINT_IGNORED",
+      "message": "minLength is stripped and must be validated by the application.",
+      "pointer": "#/properties/summary/minLength",
+      "profile": "gemini-json-2026-10-22",
+      "severity": "warning"
+    }
+  ],
+  "interpretation": "Passing finds no documented static conflict in these dated profiles; it does not prove live provider acceptance, output meaning, or future compatibility.",
+  "metrics": {
+    "enum_values": 0,
+    "largest_enum_string_budget": 0,
+    "object_nesting_depth": 1,
+    "object_properties": 2,
+    "optional_parameters": 1,
+    "string_budget": 12,
+    "union_parameters": 0
+  },
+  "profiles": {
+    "anthropic-json-2026-10-22": {
+      "accessed": "2026-10-22",
+      "mode": "output_config.format json_schema",
+      "provider": "Anthropic",
+      "source": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs"
+    },
+    "gemini-json-2026-10-22": {
+      "accessed": "2026-10-22",
+      "mode": "application/json response schema",
+      "provider": "Google Gemini",
+      "source": "https://ai.google.dev/gemini-api/docs/structured-output"
+    },
+    "openai-strict-2026-10-22": {
+      "accessed": "2026-10-22",
+      "mode": "strict JSON Schema output",
+      "provider": "OpenAI",
+      "source": "https://developers.openai.com/api/docs/guides/structured-outputs"
+    }
+  },
+  "schema_sha256": "309bee71c1d4999c207a069b9c418a2bf7cfc1a45c3aaec9e8e05f1bc1d3499c",
+  "schema_version": 1,
+  "targets": [
+    "openai-strict-2026-10-22",
+    "anthropic-json-2026-10-22",
+    "gemini-json-2026-10-22"
+  ],
+  "tool": "schemaroute",
+  "tool_version": "0.1.0",
+  "verdict": "blocked"
+}

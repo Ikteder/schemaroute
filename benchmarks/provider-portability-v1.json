@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "name": "provider-portability-v1",
+  "license": "MIT",
+  "cases": [
+    {
+      "id": "portable_all_three",
+      "targets": ["openai-strict-2026-10-22", "anthropic-json-2026-10-22", "gemini-json-2026-10-22"],
+      "schema": {
+        "type": "object",
+        "properties": {
+          "action": {"type": "string", "enum": ["approve", "decline"]},
+          "reason": {"type": ["string", "null"]}
+        },
+        "required": ["action", "reason"],
+        "additionalProperties": false
+      },
+      "expected_verdict": "portable",
+      "expected_codes": []
+    },
+    {
+      "id": "openai_root_array",
+      "targets": ["openai-strict-2026-10-22"],
+      "schema": {"type": "array", "items": {"type": "string"}},
+      "expected_verdict": "blocked",
+      "expected_codes": ["OPENAI_ROOT_OBJECT_REQUIRED"]
+    },
+    {
+      "id": "openai_optional_field",
+      "targets": ["openai-strict-2026-10-22"],
+      "schema": {
+        "type": "object",
+        "properties": {"name": {"type": "string"}, "note": {"type": "string"}},
+        "required": ["name"],
+        "additionalProperties": false
+      },
+      "expected_verdict": "blocked",
+      "expected_codes": ["OPENAI_ALL_FIELDS_REQUIRED"]
+    },
+    {
+      "id": "openai_open_object",
+      "targets": ["openai-strict-2026-10-22"],
+      "schema": {
+        "type": "object",
+        "properties": {"name": {"type": "string"}},
+        "required": ["name"]
+      },
+      "expected_verdict": "blocked",
+      "expected_codes": ["OPENAI_CLOSED_OBJECT_REQUIRED"]
+    },
+    {
+      "id": "openai_all_of",
+      "targets": ["openai-strict-2026-10-22"],
+      "schema": {
+        "type": "object",
+        "properties": {"item": {"allOf": [{"type": "string"}]}},
+        "required": ["item"],
+        "additionalProperties": false
+      },
+      "expected_verdict": "blocked",
+      "expected_codes": ["OPENAI_UNSUPPORTED_KEYWORD"]
+    },
+    {
+      "id": "openai_property_limit",
+      "targets": ["openai-strict-2026-10-22"],
+      "generator": {"kind": "properties", "count": 5001},
+      "expected_verdict": "blocked",
+      "expected_codes": ["OPENAI_PROPERTY_LIMIT"]
+    },
+    {
+      "id": "openai_nesting_limit",
+      "targets": ["openai-strict-2026-10-22"],
+      "generator": {"kind": "nested_objects", "count": 11},
+      "expected_verdict": "blocked",
+      "expected_codes": ["OPENAI_NESTING_LIMIT"]
+    },
+    {
+      "id": "anthropic_numeric_constraint",
+      "targets": ["anthropic-json-2026-10-22"],
+      "schema": {
+        "type": "object",
+        "properties": {"score": {"type": "number", "minimum": 0}},
+        "required": ["score"],
+        "additionalProperties": false
+      },
+      "expected_verdict": "blocked",
+      "expected_codes": ["ANTHROPIC_UNSUPPORTED_CONSTRAINT"]
+    },
+    {
+      "id": "anthropic_recursive",
+      "targets": ["anthropic-json-2026-10-22"],
+      "schema": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "children": {"type": "array", "items": {"$ref": "#"}}
+        },
+        "required": ["name", "children"],
+        "additionalProperties": false
+      },
+      "expected_verdict": "blocked",
+      "expected_codes": ["ANTHROPIC_RECURSION_UNSUPPORTED"]
+    },
+    {
+      "id": "anthropic_optional_limit",
+      "targets": ["anthropic-json-2026-10-22"],
+      "generator": {"kind": "optional_properties", "count": 25},
+      "expected_verdict": "blocked",
+      "expected_codes": ["ANTHROPIC_OPTIONAL_PARAMETER_LIMIT"]
+    },
+    {
+      "id": "anthropic_union_limit",
+      "targets": ["anthropic-json-2026-10-22"],
+      "generator": {"kind": "union_properties", "count": 17},
+      "expected_verdict": "blocked",
+      "expected_codes": ["ANTHROPIC_UNION_PARAMETER_LIMIT"]
+    },
+    {
+      "id": "anthropic_citations_conflict",
+      "targets": ["anthropic-json-2026-10-22"],
+      "features": {"citations": true},
+      "schema": {
+        "type": "object",
+        "properties": {"answer": {"type": "string"}},
+        "required": ["answer"],
+        "additionalProperties": false
+      },
+      "expected_verdict": "blocked",
+      "expected_codes": ["ANTHROPIC_CITATIONS_CONFLICT"]
+    },
+    {
+      "id": "gemini_ignored_constraints",
+      "targets": ["gemini-json-2026-10-22"],
+      "schema": {
+        "type": "object",
+        "minProperties": 1,
+        "properties": {"summary": {"type": "string", "minLength": 20}},
+        "required": ["summary"]
+      },
+      "expected_verdict": "requires_runtime_validation",
+      "expected_codes": ["GEMINI_CONSTRAINT_IGNORED"]
+    },
+    {
+      "id": "gemini_unverified_one_of",
+      "targets": ["gemini-json-2026-10-22"],
+      "schema": {
+        "type": "object",
+        "properties": {"value": {"oneOf": [{"type": "string"}, {"type": "number"}]}},
+        "required": ["value"]
+      },
+      "expected_verdict": "requires_runtime_validation",
+      "expected_codes": ["GEMINI_KEYWORD_UNVERIFIED"]
+    },
+    {
+      "id": "three_provider_recursive_route",
+      "targets": ["openai-strict-2026-10-22", "anthropic-json-2026-10-22", "gemini-json-2026-10-22"],
+      "schema": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "reports": {"type": "array", "items": {"$ref": "#"}}
+        },
+        "required": ["name", "reports"],
+        "additionalProperties": false
+      },
+      "expected_verdict": "blocked",
+      "expected_codes": ["ANTHROPIC_RECURSION_UNSUPPORTED"]
+    }
+  ]
+}

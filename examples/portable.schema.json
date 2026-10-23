@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "enum": ["approve", "decline"]
+    },
+    "confidence": {
+      "type": "number"
+    },
+    "reason": {
+      "type": ["string", "null"]
+    }
+  },
+  "required": ["action", "confidence", "reason"],
+  "additionalProperties": false
+}
